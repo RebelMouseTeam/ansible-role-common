@@ -1,0 +1,10 @@
+---
+galaxy_info:
+  author: Andrey Gubarev
+  description: common
+  min_ansible_version: 2.3
+  platforms:
+    - name: Ubuntu
+      versions:
+        - xenial
+  dependencies: []
