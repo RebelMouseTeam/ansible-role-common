@@ -29,19 +29,19 @@
       - setuptools==38.6.1
       - pip==9.0.3
       - wheel==0.31.0
-      - pipenv==2018.5.18
-      - virtualenv==16.0.0
     state: present
     executable: "{{ item }}"
   with_items:
     - pip2
     - pip3
 
-- name: update boto
+- name: update python system packages
   pip:
     name:
-      - boto
-      - boto3
+      - boto==2.48.0
+      - boto3==1.7.45
+      - pipenv==2018.5.18
+      - virtualenv==16.0.0
     state: present
     executable: "{{ item }}"
   with_items:
