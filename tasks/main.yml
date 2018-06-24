@@ -10,34 +10,9 @@
       - apt-transport-https
       - ca-certificates
       - software-properties-common
-      - lvm2
       - python-pip
       - python3-pip
     state: present
-
-- name: update pip2
-  pip:
-    name: "{{ item }}"
-    state: present
-    executable: pip2
-  with_items:
-    - setuptools==38.6.1
-    - pip==9.0.3
-    - wheel==0.31.0
-    - pipenv==2018.5.18
-    - virtualenv==16.0.0
-
-- name: update pip3
-  pip:
-    name: "{{ item }}"
-    state: present
-    executable: pip3
-  with_items:
-    - setuptools==38.6.1
-    - pip==9.0.3
-    - wheel==0.31.0
-    - pipenv==2018.5.18
-    - virtualenv==16.0.0
 
 - name: add git ppa
   apt_repository:
@@ -48,17 +23,30 @@
     name: git
     state: present
 
-- name: install boto
+- name: update pip
   pip:
-    name: boto
+    name:
+      - setuptools==38.6.1
+      - pip==9.0.3
+      - wheel==0.31.0
+      - pipenv==2018.5.18
+      - virtualenv==16.0.0
     state: present
-    executable: pip2
+    executable: "{{ item }}"
+  with_items:
+    - pip2
+    - pip3
 
-- name: install boto3
+- name: update boto
   pip:
-    name: boto3
+    name:
+      - boto
+      - boto3
     state: present
-    executable: pip3
+    executable: "{{ item }}"
+  with_items:
+    - pip2
+    - pip3
 
 - name: install awscli
   pip:
